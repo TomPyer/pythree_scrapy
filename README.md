@@ -33,3 +33,8 @@ python3 study test..
   TypeError: POST data should be bytes, an iterable of bytes, or a file object. It cannot be of type str.
 使用urllib.parse.encode(data).encode(encoding="UTF8") 解决
 * 问题来由详见关于 curlApi/main.py 内
+
+
+更新预告：
+   简书：http://www.jianshu.com/p/75d26f00ddb1 关于docker的安装和使用（windows下）
+   简书：http://www.jianshu.com/p/dffa49ea48c3 关于scrapy-splash的安装和使用（同上）
