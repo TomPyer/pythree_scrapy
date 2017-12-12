@@ -113,6 +113,14 @@ MYSQL_DBNAME = 'testDB'
 MYSQL_USER = 'root'
 MYSQL_PASSWD = ''
 
+DATABASE = {'drivername': 'mysql',
+            'host': '127.0.0.1',
+            'port': '3306',
+            'username': 'root',
+            'password': '******',
+            'database': 'test',
+            'query': {'charset': 'utf8'}}
+
 # 分布式爬虫概念
 # Scrapy并没有提供内置的分布式抓取功能，不过有很多方法可以帮你实现。
 # 如果你有很多个spider，最简单的方式就是启动多个Scrapyd实例，然后将spider分布到各个机器上面。
@@ -127,3 +135,15 @@ MYSQL_PASSWD = ''
 # 使用一个轮转IP池，例如免费的Tor project或者是付费的ProxyMesh
 # 使用大型分布式下载器，这样就能完全避免被封了，只需要关注怎样解析页面就行。一个例子就是Crawlera
 
+# 防止被Ban的策略设置
+DOWNLOAD_TIMEOUT = 20
+DOWNLOAD_DELAY = 5
+# 禁用Cookie
+COOKIES_ENABLES = True
+
+# 日志设置
+import logging
+LOG_LEVEL = logging.INFO
+LOG_STDOUT = True
+LOG_FILE = "E:/logs/spider.log"
+LOG_FORMAT = "%(asctime)s [%(name)s] %(levelname)s: %(message)s"

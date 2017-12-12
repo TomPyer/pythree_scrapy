@@ -26,3 +26,12 @@ class iFengNewItem(scrapy.Item):
     # viewNum = Field()       # 点击量
     # plNum = Field()         # 评论数
     pass
+
+
+class Article(scrapy.Item):
+    title = Field()
+    url = Field()
+    body = Field()
+    publish_time = Field()
+    source_site = Field()
+    pass
