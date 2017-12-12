@@ -67,7 +67,24 @@ ROBOTSTXT_OBEY = False
 ITEM_PIPELINES = {
    'pythree_scrapy.pipelines.MySQLChyxxPipeline': 300,      # 启用存入数据库的pipeline
    # 'pythree_scrapy.pipelines.MyFilePipeline': 301,         # 启用文件下载pipeline
+   'scrapy.pipelines.images.ImagesPipeline': 1,
+   'scrapy.pipelines.files.FilesPipeline': 2,
 }
+
+FILES_STORE = '/path/to/valid/dir'   # 文件存储路径
+IMAGES_STORE = '/path/to/valid/dir'  # 图片存储路径
+# 90 days of delay for files expiration
+FILES_EXPIRES = 90
+# 30 days of delay for images expiration
+IMAGES_EXPIRES = 30
+# 图片缩略图
+IMAGES_THUMBS = {
+    'small': (50, 50),
+    'big': (270, 270),
+}
+# 图片过滤器，最小高度和宽度
+IMAGES_MIN_HEIGHT = 110
+IMAGES_MIN_WIDTH = 110
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -95,3 +112,18 @@ MYSQL_HOST = '127.0.0.1'
 MYSQL_DBNAME = 'testDB'
 MYSQL_USER = 'root'
 MYSQL_PASSWD = ''
+
+# 分布式爬虫概念
+# Scrapy并没有提供内置的分布式抓取功能，不过有很多方法可以帮你实现。
+# 如果你有很多个spider，最简单的方式就是启动多个Scrapyd实例，然后将spider分布到各个机器上面。
+# 如果你想多个机器运行同一个spider，可以将url分片后交给每个机器上面的spider。比如你把URL分成3份
+# 主爬虫获取url存入redis, 再由不同的scrapyd实例从redis中获取url进行爬取,达到分布式效果
+
+# 防封策略
+# 使用user agent池。也就是每次发送的时候随机从池中选择不一样的浏览器头信息，防止暴露爬虫身份
+# 禁止Cookie，某些网站会通过Cookie识别用户身份，禁用后使得服务器无法识别爬虫轨迹
+# 设置download_delay下载延迟，数字设置为5秒，越大越安全
+# 如果有可能的话尽量使用Google cache获取网页，而不是直接访问
+# 使用一个轮转IP池，例如免费的Tor project或者是付费的ProxyMesh
+# 使用大型分布式下载器，这样就能完全避免被封了，只需要关注怎样解析页面就行。一个例子就是Crawlera
+
