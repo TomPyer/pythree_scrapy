@@ -45,27 +45,29 @@ class MySQLChyxxPipeline(object):
         return d
 
     def _do_insert(self, conn, item, spider):
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         sql = """
-            insert into gdhf_data(title, content, url, date, insert_time)
-            values(%s, %s, %s, %s, %s)
+            insert into ifeng_news(title, content, url, time, news_from, news_type, )
+            values(%s, %s, %s, %s, %s, %s, %s)
         """
-        conn.execute(sql, (item['title'], item['content'], item['url'], item['date'], now))
+        conn.execute(sql, (item['title'], item['content'], item['url'], item['time'], item['news_from'], item['news_type']))
 
 
 class MyFilePipeline(FilesPipeline):
 
     def file_path(self, request, response=None, info=None):
+        # 修改这个方法可以在pipeline中修改文件保存路径
         item = request.meta['item']
         return item['file_paths']
 
     def get_media_requests(self, item, info):
-        # for file_url in item['file_urls']:
-        yield Request(item['file_urls'], meta={'item': item})
+        # 返回一个Request对象
+        for file_url in item['file_urls']:
+            yield Request(file_url)
 
     def item_completed(self, results, item, info):
+        # 当Request下载完成后,填充files字段
         file_paths = [x['path'] for ok, x in results if ok]
         if not file_paths:
             raise DropItem("Item contains no file")
-        # item['file_paths'] = file_paths
+        item['file_paths'] = file_paths
         return item
