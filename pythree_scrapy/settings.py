@@ -145,5 +145,4 @@ COOKIES_ENABLES = True
 import logging
 LOG_LEVEL = logging.INFO
 LOG_STDOUT = True
-LOG_FILE = "E:/logs/spider.log"
 LOG_FORMAT = "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
