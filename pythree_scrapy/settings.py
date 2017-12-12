@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+# DOWNLOAD_DELAY = 5
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -52,9 +52,11 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'pythree_scrapy.middlewares.MyCustomDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
+}
 
 # Enable or disable extensions
 # See http://scrapy.readthedocs.org/en/latest/topics/extensions.html
@@ -146,3 +148,8 @@ import logging
 LOG_LEVEL = logging.INFO
 LOG_STDOUT = True
 LOG_FORMAT = "%(asctime)s [%(name)s] %(levelname)s: %(message)s"
+
+# splash 配置
+SPLASH_URL = 'http://192.168.99.100:8050'           # splash服务ip和端口
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'    # splash去重过滤器
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'   # splash http缓存
