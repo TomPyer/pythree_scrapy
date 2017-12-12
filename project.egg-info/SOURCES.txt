@@ -1,0 +1,13 @@
+setup.py
+project.egg-info/PKG-INFO
+project.egg-info/SOURCES.txt
+project.egg-info/dependency_links.txt
+project.egg-info/entry_points.txt
+project.egg-info/top_level.txt
+pythree_scrapy/__init__.py
+pythree_scrapy/items.py
+pythree_scrapy/middlewares.py
+pythree_scrapy/pipelines.py
+pythree_scrapy/settings.py
+pythree_scrapy/spiders/__init__.py
+pythree_scrapy/spiders/ifengNew.py
