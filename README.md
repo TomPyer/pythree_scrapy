@@ -13,13 +13,21 @@ python3 study test..
 因为之前一直使用py2.7,部分urllib库操作尚未完全记住,所以列出：
 
 在Pytho2.x中使用import urllib2——-对应的，在Python3.x中会使用import urllib.request，urllib.error。
+
 在Pytho2.x中使用import urllib——-对应的，在Python3.x中会使用import urllib.request，urllib.error，urllib.parse。
+
 在Pytho2.x中使用import urlparse——-对应的，在Python3.x中会使用import urllib.parse。
+
 在Pytho2.x中使用import urlopen——-对应的，在Python3.x中会使用import urllib.request.urlopen。
+
 在Pytho2.x中使用import urlencode——-对应的，在Python3.x中会使用import urllib.parse.urlencode。
+
 在Pytho2.x中使用import urllib.quote——-对应的，在Python3.x中会使用import urllib.request.quote。
+
 在Pytho2.x中使用cookielib.CookieJar——-对应的，在Python3.x中会使用http.CookieJar。
+
 在Pytho2.x中使用urllib2.Request——-对应的，在Python3.x中会使用urllib.request.Request
+
 
 以及 urllib.parse.encode(data) 报错: 
   TypeError: POST data should be bytes, an iterable of bytes, or a file object. It cannot be of type str.
