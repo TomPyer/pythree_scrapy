@@ -22,6 +22,7 @@ class iFengNewItem(scrapy.Item):
     content = Field()
     news_from = Field()
     news_type = Field()
+    url = Field()
     # viewNum = Field()       # 点击量
     # plNum = Field()         # 评论数
     pass

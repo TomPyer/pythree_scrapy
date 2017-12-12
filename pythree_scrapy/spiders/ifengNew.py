@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy import Selector
-from scrapy import Request
+from scrapy import Request, FormRequest
 from pythree_scrapy.items import iFengNewItem
 
 
@@ -38,7 +38,28 @@ class IfengnewSpider(scrapy.Spider):
         title_div = sel.xpath('//div[@class="title"]')
         item['title'] = title_div.xpath('.//h2/text()').extract_first(default='')
         item['time'] = meta['time']
+        item['url'] = response.url
         item['news_type'] = meta['type_name']
         item['news_from'] = title_div.xpath('.//div[@class="pr"]/span/text()').extract_first(default='')
         item['content'] = '\n'.join(title_div.xpath('//div[@class="article"]/p/text()').extract())
         yield item
+
+
+class LoginSpider(scrapy.Spider):
+    name = 'example.com'
+    start_urls = ['http://www.example.com/users/login.php']
+
+    def parse(self, response):
+        return scrapy.FormRequest.from_response(
+            response,
+            formdata={'username': 'john', 'password': 'secret'},
+            callback=self.after_login
+        )
+
+    def after_login(self, response):
+        # check login succeed before going on
+        if "authentication failed" in response.body:
+            self.logger.error("Login failed")
+            return
+        # 日志功能使用
+        self.logger.info('Parse function called on %s', response.url)
