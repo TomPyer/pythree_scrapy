@@ -37,4 +37,10 @@ python3 study test..
 
 更新预告：
    简书：http://www.jianshu.com/p/75d26f00ddb1 关于docker的安装和使用（windows下）
+   
    简书：http://www.jianshu.com/p/dffa49ea48c3 关于scrapy-splash的安装和使用（同上）
+
+
+更新个问题...
+
+    由于本地py27和36的共存问题,不胜其烦,然后卸载了py27,卸载后重新安装scrapyd等模块,结果导致scrapyd启动后无法读取spiders
