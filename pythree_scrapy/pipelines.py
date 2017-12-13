@@ -39,7 +39,7 @@ class MySQLChyxxPipeline(object):
             cursorclass=pymysql.cursors.DictCursor,
             use_unicode=True
         )
-        dbpool = adbapi.ConnectionPool('MySQLdb', **dbargs)
+        dbpool = adbapi.ConnectionPool('pymysql', **dbargs)
         return cls(dbpool)
 
     def process_item(self, item, spider):
