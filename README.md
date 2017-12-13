@@ -44,3 +44,7 @@ python3 study test..
 更新个问题...
 
     由于本地py27和36的共存问题,不胜其烦,然后卸载了py27,卸载后重新安装scrapyd等模块,结果导致scrapyd启动后无法读取spiders
+
+
+
+新开项目重写这里...
